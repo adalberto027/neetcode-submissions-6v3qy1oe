@@ -1,25 +1,17 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        p1 = 0
+        p2 = len(matrix) * len(matrix[0]) - 1
 
-        def binarysearch(l: List[int], target: int) -> bool:
-            p1, p2 = 0, len(l)-1
+        while p1 <= p2:
+            m = (p1 + p2) // 2
+            print(matrix[m // len(matrix[0])][m % len(matrix[0])])
 
-            while p1 <= p2:
-                m = int((p1+p2)/2)
-                if l[m] == target:
-                    return True
-                if l[m] > target:
-                    p2 = m - 1
-                else:
-                    p1 = m + 1
-            return False
-
-        for e in matrix:
-            if binarysearch(e, target):
+            if matrix[m // len(matrix[0])][m % len(matrix[0])] > target:
+                p2 = m - 1
+            elif matrix[m // len(matrix[0])][m % len(matrix[0])] < target:
+                p1 = m + 1
+            else:
                 return True
-                
         return False
-
-        
-
         
